@@ -12,7 +12,7 @@ Optional Variables:
 
   backends:         an array of backends to load. Each backend must exist
                     by name in the directory backends/. If not specified,
-                    the default graphite backend will be loaded. 
+                    the default graphite backend will be loaded.
                     * example for console and graphite:
                     [ "./backends/console", "./backends/graphite" ]
   server:           the server to load. The server must exist by name in the directory
@@ -103,13 +103,16 @@ Optional Variables:
 */
 (function() {
     return {
-        graphitePort: parseInt(process.env.GRAPHITE_PORT_2003_TCP_PORT),
-        graphiteHost: process.env.GRAPHITE_PORT_2003_TCP_ADDR,
+        graphitePort: parseInt(process.env.GRAPHITE_PORT),
+        graphiteHost: process.env.GRAPHITE_HOST,
         port: parseInt(process.env.STATSD_PORT),
         dumpMessages: process.env.STATSD_DUMP_MSG == "true",
         debug: process.env.STATSD_DEBUG == "true",
         flushInterval: parseInt(process.env.STATSD_FLUSH_INTERVAL),
-
+        backends: [ "./backends/graphite" ],
+        deleteCounters: true,
+        deleteGauges: true,
+        percentThreshold: [90, 99],
         graphite: {
             globalPrefix: process.env.GRAPHITE_GLOBAL_PREFIX,
             legacyNamespace: process.env.GRAPHITE_LEGACY_NAMESPACE == 'true'
