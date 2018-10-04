@@ -37,8 +37,6 @@ sudo docker run -e GRAPHITE_HOST=127.0.0.1 -e STATSD_DUMP_MSG=true -p 8125:8125/
 
 ## Building the container
 
-*This repository is setup to automatically build on Docker Hub when new commits are pushed to the master branch.*
-
 If you wish to build this repository manually, the following command(s) can be used:
 
 ```sudo docker build -t statsd . ```
