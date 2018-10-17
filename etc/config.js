@@ -102,6 +102,14 @@ Optional Variables:
                          changes. The default is true. Set this to false to disable.
 */
 (function() {
+    var suffix = process.env.INSTANCE_ID;
+    if(typeof suffix != 'undefined' && suffix && suffix != '') {
+      suffix = '.' + suffix;
+    } else {
+      suffix = '';
+    }
+    var globalPrefixValue = process.env.GRAPHITE_GLOBAL_PREFIX + suffix;
+    console.log('Using global prefix:' + globalPrefixValue);
     return {
         graphitePort: parseInt(process.env.GRAPHITE_PORT),
         graphiteHost: process.env.GRAPHITE_HOST,
@@ -114,7 +122,7 @@ Optional Variables:
         deleteGauges: true,
         percentThreshold: [90, 99],
         graphite: {
-            globalPrefix: process.env.GRAPHITE_GLOBAL_PREFIX,
+            globalPrefix: globalPrefixValue,
             legacyNamespace: process.env.GRAPHITE_LEGACY_NAMESPACE == 'true'
         }
     };
