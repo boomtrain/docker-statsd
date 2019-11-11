@@ -102,7 +102,7 @@ Optional Variables:
                          changes. The default is true. Set this to false to disable.
 */
 (function() {
-    var suffix = process.env.INSTANCE_ID;
+    var suffix = process.env.HOST_NAME;
     if(typeof suffix != 'undefined' && suffix && suffix != '') {
       suffix = '.' + suffix;
     } else {
@@ -117,7 +117,8 @@ Optional Variables:
         dumpMessages: process.env.STATSD_DUMP_MSG == "true",
         debug: process.env.STATSD_DEBUG == "true",
         flushInterval: parseInt(process.env.STATSD_FLUSH_INTERVAL),
-        backends: [ "./backends/graphite" ],
+        backends: [ "./backends/graphite", "./backends/repeater" ],
+        repeater: [ { host: process.env.REPEATER_HOST, port: 8125 } ],
         deleteCounters: true,
         deleteGauges: true,
         percentThreshold: [90, 99],
