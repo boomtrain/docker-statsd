@@ -2,7 +2,7 @@
 
 FROM tarampampam/node:10.10-alpine
 
-RUN git clone git@github.com:statsd/statsd.git /usr/local/src/statsd
+RUN git clone git://github.com/etsy/statsd.git /usr/local/src/statsd
 
 ADD ./etc/config.js ./etc/default/statsd.js
 
