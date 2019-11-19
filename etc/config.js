@@ -119,6 +119,7 @@ Optional Variables:
         flushInterval: parseInt(process.env.STATSD_FLUSH_INTERVAL),
         backends: [ "./backends/graphite", "./backends/repeater" ],
         repeater: [ { host: process.env.REPEATER_HOST, port: 8125 } ],
+        repeaterProtocol: process.env.REPEATER_PROTOCOL,
         deleteCounters: true,
         deleteGauges: true,
         percentThreshold: [90, 99],
